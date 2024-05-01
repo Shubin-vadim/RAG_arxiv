@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "rag"
+version = "0.1.0"
+description = ""
+authors = ["liliaa23ar@gmail.com <midavnibush@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2.1"
+gigachain = "^0.1.15"
+scikit-learn = "^1.4.2"
+matplotlib = "^3.8.4"
+spacy = "^3.7.4"
+ipykernel = "^6.29.4"
+nltk = "^3.8.1"
+plotly = "^5.20.0"
+plotly-express = "^0.4.1"
+seaborn = "^0.13.2"
+kaleido = "0.2.1"
+streamlit = "^1.33.0"
+python-dotenv = "^1.0.1"
+llama-index = "^0.10.30"
+transformers = "^4.40.0"
+torch = "^2.2.2"
+sentence-transformers = "^2.7.0"
+llama-index-vector-stores-chroma = "^0.1.6"
+llama-index-embeddings-huggingface = "^0.2.0"
+llama-index-llms-huggingface = "^0.1.4"
+llama-index-postprocessor-colbert-rerank = "^0.1.1"
+llama-index-llms-llama-api = "^0.1.4"
+llama-index-program-openai = "^0.1.6"
+ruff = "^0.4.2"
+black = "^24.4.2"
+isort = "^5.13.2"
+dvc = "^3.50.1"
+mypy = "^1.10.0"
+pre-commit = "^3.7.0"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
