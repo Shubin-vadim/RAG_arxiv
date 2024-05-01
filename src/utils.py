@@ -1,4 +1,5 @@
 import json
+import yaml
 import pandas as pd
 import os
 import sys
@@ -18,7 +19,7 @@ def transform_from_json_to_csv(data_path: str, save_path: str, columns: list[str
     df_data.to_csv(save_path, index=False)
     print(f'Data saved to {save_path}')
 
-def load_config(config_path):
+def load_config_json(config_path):
     try:
         with open(config_path) as config_file:
             return json.load(config_file)
@@ -26,6 +27,15 @@ def load_config(config_path):
         sys.exit(f"Configuration file not found: {config_path}")
     except json.JSONDecodeError:
         sys.exit(f"Error parsing JSON file: {config_path}")
+
+def load_config_yaml(config_path):
+    try:
+        with open(config_path) as config_file:
+            return yaml.safe_load(config_file)
+    except FileNotFoundError:
+        sys.exit(f"Configuration file not found: {config_path}")
+    except json.JSONDecodeError:
+        sys.exit(f"Error parsing YAML file: {config_path}")
 
 
 def load_environment_variables(project_path):
