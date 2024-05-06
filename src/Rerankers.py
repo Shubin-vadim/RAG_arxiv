@@ -25,11 +25,13 @@ class RerankerSentenceTransformer:
                  device='cpu',
                  top_n=3,
                  model='colbert-ir/colbertv2.0',
+                 tokenizer='colbert-ir/colbertv2.0',
                  keep_retrieval_score=True,
                  ) -> None:
 
         self.sentence_reranker = ColbertRerank(
             model=model,
+            tokenizer=tokenizer,
             top_n=top_n,
             keep_retrieval_score=keep_retrieval_score,
             device=device

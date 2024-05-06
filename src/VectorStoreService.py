@@ -1,4 +1,3 @@
-from typing import Dict, Any
 from llama_index.core import VectorStoreIndex
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 import chromadb
@@ -7,6 +6,7 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import StorageContext
 
 class VectorStoreService:
+
     def __init__(self,
                  documents = None,
                  show_progress=False,
@@ -15,7 +15,10 @@ class VectorStoreService:
                  chroma_path: str = '.',
                  name_collection: str = '',
                  cache_folder: str = '.',
-                 **kwargs: Dict[str, Any],
+                 node_postprocessors=None,
+                 similarity_top_k=3,
+                 alpha=0.5,
+                #  **kwargs: Dict[str, Any],
                  ) -> None:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.embed_model = HuggingFaceEmbedding(
@@ -27,16 +30,25 @@ class VectorStoreService:
         self.chroma_collection = self.chroma_client.get_or_create_collection(name_collection)
         self.vector_store = ChromaVectorStore(chroma_collection=self.chroma_collection)
         self.storage_context = StorageContext.from_defaults(vector_store=self.vector_store)
-        self.index = VectorStoreIndex.from_documents(
-            documents=documents,
-            storage_context=self.storage_context,
-            embed_model=self.embed_model,
-            show_progress=show_progress
-            )
-
+        if documents is None:
+            self.index = VectorStoreIndex.from_vector_store(
+                self.vector_store,
+                storage_context=self.storage_context,
+                embed_model=self.embed_model,
+                show_progress=show_progress,
+                )
+        else:
+            self.index = VectorStoreIndex.from_documents(
+                documents=documents,
+                storage_context=self.storage_context,
+                embed_model=self.embed_model,
+                show_progress=show_progress,
+                )
         self.query_engine = self.index.as_query_engine(
             llm=llm,
-            **kwargs
+             node_postprocessors=[node_postprocessors],
+            similarity_top_k=similarity_top_k,
+            alpha=alpha,
         )
 
     def update_prompts(self, prompt_template, refine_template) -> None:
