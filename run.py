@@ -37,19 +37,18 @@ def main(config_path: str) -> None:
     )
 
     reranker = RerankerColBERT()
+
     vectore_service = VectorStoreService(
-        documents=documents,
+        documents=None,
         show_progress=True,
         llm=llm.get_llm(),
         embedding_model=EMBEDDING_MODEL,
         chroma_path='./DB',
-        name_collection='axriv',
+        name_collection='arxiv',
         cache_folder='./models',
-        **{
-            'similarity_top_k': config['vector_store']['similarity_top_k'],
-            'alpha': config['vector_store']['alpha'],
-            'node_postprocessors': reranker.get_reranker(),
-        }
+        node_postprocessors=reranker.get_reranker(),
+        similarity_top_k=config['vector_store']['similarity_top_k'],
+        alpha=config['vector_store']['alpha'],
     )
 
     vectore_service.update_prompts(
@@ -61,13 +60,14 @@ def main(config_path: str) -> None:
          query = input('Enter your question')
          answer = vectore_service.send_query(query)
          print(answer)
+         print('-----' * 10)
 
 if __name__ == '__main__':
-    
+
     parser = argparse.ArgumentParser(
         description='RAG using a YAML configuration file.'
     )
-    
+
     parser.add_argument(
         '--config_path', type=str, required=True, help='Path to the YAML config file.'
     )

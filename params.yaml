@@ -1,0 +1,17 @@
+rag:
+  debug: True
+  count_records: 166
+
+data:
+  test_size: 0.3
+  raw_data: 'data\raw\full_data.csv'
+  interim_data: 'data\interim\prepared_data.csv'
+  prepared_column: 'prepared_text'
+
+llm:
+  temperature: 0.01
+  max_tokens: 2048
+
+vector_store:
+  similarity_top_k: 5
+  alpha: 0.5
