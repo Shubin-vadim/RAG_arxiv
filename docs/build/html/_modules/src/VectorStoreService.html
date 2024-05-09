@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en,ru" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.VectorStoreService &#8212; arhix_rag 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=0f2532d8"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
+
+
+
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+          <div class="body" role="main">
+
+  <h1>Source code for src.VectorStoreService</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">llama_index.core</span> <span class="kn">import</span> <span class="n">VectorStoreIndex</span>
+<span class="kn">from</span> <span class="nn">llama_index.embeddings.huggingface</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbedding</span>
+<span class="kn">import</span> <span class="nn">chromadb</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">llama_index.vector_stores.chroma</span> <span class="kn">import</span> <span class="n">ChromaVectorStore</span>
+<span class="kn">from</span> <span class="nn">llama_index.core</span> <span class="kn">import</span> <span class="n">StorageContext</span>
+
+<div class="viewcode-block" id="VectorStoreService">
+<a class="viewcode-back" href="../../src.html#src.VectorStoreService.VectorStoreService">[docs]</a>
+<span class="k">class</span> <span class="nc">VectorStoreService</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class to manage vector storage and query operations for retrieval-augmented generation (RAG).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        documents (Optional[pd.DataFrame]): DataFrame containing documents to index. Default is None.</span>
+<span class="sd">        show_progress (bool): Flag to indicate whether to show progress bars during indexing. Default is False.</span>
+<span class="sd">        llm (Optional[LlamaServiceAPI]): Instance of LlamaServiceAPI for generating prompts. Default is None.</span>
+<span class="sd">        embedding_model (str): Name of the embedding model to use. Default is an empty string.</span>
+<span class="sd">        chroma_path (str): Path to the ChromaDB directory. Default is &#39;.&#39;.</span>
+<span class="sd">        name_collection (str): Name of the collection in ChromaDB. Default is an empty string.</span>
+<span class="sd">        cache_folder (str): Path to the cache folder for storing embeddings. Default is &#39;.&#39;.</span>
+<span class="sd">        node_postprocessors (Optional[Reranker]): Instance of the reranker for post-processing nodes. Default is None.</span>
+<span class="sd">        similarity_top_k (int): Number of top similar documents to retrieve. Default is 3.</span>
+<span class="sd">        alpha (float): Alpha value for balancing original and reranked scores. Default is 0.5.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        device (torch.device): Device used for embedding model.</span>
+<span class="sd">        embed_model (HuggingFaceEmbedding): Instance of HuggingFaceEmbedding for embedding documents.</span>
+<span class="sd">        chroma_client (PersistentClient): Client for accessing ChromaDB.</span>
+<span class="sd">        chroma_collection (ChromaCollection): Collection in ChromaDB.</span>
+<span class="sd">        vector_store (ChromaVectorStore): Vector store for storing document embeddings.</span>
+<span class="sd">        storage_context (StorageContext): Context for storage operations.</span>
+<span class="sd">        index (VectorStoreIndex): Index for vector storage.</span>
+<span class="sd">        query_engine (RAGQueryEngine): Engine for executing RAG queries.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        update_prompts(prompt_template, refine_template): Update prompt templates for RAG query engine.</span>
+<span class="sd">        send_query(message): Send a query to the RAG query engine and retrieve the response.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">documents</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">show_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">llm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">embedding_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                 <span class="n">chroma_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+                 <span class="n">name_collection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                 <span class="n">cache_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+                 <span class="n">node_postprocessors</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">similarity_top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+                 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a VectorStoreService instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            documents (Optional[pd.DataFrame]): DataFrame containing documents to index. Default is None.</span>
+<span class="sd">            show_progress (bool): Flag to indicate whether to show progress bars during indexing. Default is False.</span>
+<span class="sd">            llm (Optional[LlamaServiceAPI]): Instance of LlamaServiceAPI for generating prompts. Default is None.</span>
+<span class="sd">            embedding_model (str): Name of the embedding model to use. Default is an empty string.</span>
+<span class="sd">            chroma_path (str): Path to the ChromaDB directory. Default is &#39;.&#39;.</span>
+<span class="sd">            name_collection (str): Name of the collection in ChromaDB. Default is an empty string.</span>
+<span class="sd">            cache_folder (str): Path to the cache folder for storing embeddings. Default is &#39;.&#39;.</span>
+<span class="sd">            node_postprocessors (Optional[Reranker]): Instance of the reranker for post-processing nodes. Default is None.</span>
+<span class="sd">            similarity_top_k (int): Number of top similar documents to retrieve. Default is 3.</span>
+<span class="sd">            alpha (float): Alpha value for balancing original and reranked scores. Default is 0.5.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embed_model</span> <span class="o">=</span> <span class="n">HuggingFaceEmbedding</span><span class="p">(</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="n">embedding_model</span><span class="p">,</span>
+            <span class="n">cache_folder</span><span class="o">=</span><span class="n">cache_folder</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chroma_client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">chroma_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chroma_collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chroma_client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="n">name_collection</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vector_store</span> <span class="o">=</span> <span class="n">ChromaVectorStore</span><span class="p">(</span><span class="n">chroma_collection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chroma_collection</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage_context</span> <span class="o">=</span> <span class="n">StorageContext</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">(</span><span class="n">vector_store</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vector_store</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">documents</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">VectorStoreIndex</span><span class="o">.</span><span class="n">from_vector_store</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">vector_store</span><span class="p">,</span>
+                <span class="n">storage_context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">storage_context</span><span class="p">,</span>
+                <span class="n">embed_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embed_model</span><span class="p">,</span>
+                <span class="n">show_progress</span><span class="o">=</span><span class="n">show_progress</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">VectorStoreIndex</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+                <span class="n">documents</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span>
+                <span class="n">storage_context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">storage_context</span><span class="p">,</span>
+                <span class="n">embed_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embed_model</span><span class="p">,</span>
+                <span class="n">show_progress</span><span class="o">=</span><span class="n">show_progress</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">as_query_engine</span><span class="p">(</span>
+            <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+             <span class="n">node_postprocessors</span><span class="o">=</span><span class="p">[</span><span class="n">node_postprocessors</span><span class="p">],</span>
+            <span class="n">similarity_top_k</span><span class="o">=</span><span class="n">similarity_top_k</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="VectorStoreService.update_prompts">
+<a class="viewcode-back" href="../../src.html#src.VectorStoreService.VectorStoreService.update_prompts">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_prompts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt_template</span><span class="p">,</span> <span class="n">refine_template</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update prompt templates for the RAG query engine.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            prompt_template (str): Template for generating prompts.</span>
+<span class="sd">            refine_template (str): Template for refining generated responses.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">query_engine</span><span class="o">.</span><span class="n">update_prompts</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;response_synthesizer:text_qa_template&quot;</span><span class="p">:</span> <span class="n">prompt_template</span><span class="p">,</span> <span class="s2">&quot;response_synthesizer:refine_template&quot;</span><span class="p">:</span> <span class="n">refine_template</span><span class="p">}</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VectorStoreService.send_query">
+<a class="viewcode-back" href="../../src.html#src.VectorStoreService.VectorStoreService.send_query">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a query message to the RAG query engine and retrieve the response.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message (str): The query message.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The response generated by the RAG query engine.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_engine</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">arhix_rag</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Vadim Shubin.
+
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+
+    </div>
+
+
+
+
+  </body>
+</html>

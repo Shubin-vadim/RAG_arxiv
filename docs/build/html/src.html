@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html lang="en,ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>src package &#8212; arhix_rag 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=0f2532d8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+
+
+
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+          <div class="body" role="main">
+
+  <section id="src-package">
+<h1>src package<a class="headerlink" href="#src-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-src.DataLoader">
+<span id="src-dataloader-module"></span><h2>src.DataLoader module<a class="headerlink" href="#module-src.DataLoader" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.DataLoader.DataLoader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.DataLoader.</span></span><span class="sig-name descname"><span class="pre">DataLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepared_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'prepared_text'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/DataLoader.html#DataLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.DataLoader.DataLoader" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for loading data into memory.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.DataLoader.DataLoader.df">
+<span class="sig-name descname"><span class="pre">df</span></span><a class="headerlink" href="#src.DataLoader.DataLoader.df" title="Link to this definition">¶</a></dt>
+<dd><p>DataFrame containing the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.DataLoader.DataLoader.prepared_column">
+<span class="sig-name descname"><span class="pre">prepared_column</span></span><a class="headerlink" href="#src.DataLoader.DataLoader.prepared_column" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the column containing prepared text. Default is 'prepared_text'.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.DataLoader.DataLoader.arxiv_documents">
+<span class="sig-name descname"><span class="pre">arxiv_documents</span></span><a class="headerlink" href="#src.DataLoader.DataLoader.arxiv_documents" title="Link to this definition">¶</a></dt>
+<dd><p>List to store ArXiv documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.DataLoader.DataLoader.get_documents">
+<span class="sig-name descname"><span class="pre">get_documents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/DataLoader.html#DataLoader.get_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.DataLoader.DataLoader.get_documents" title="Link to this definition">¶</a></dt>
+<dd><p>Get the list of documents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.DataLoader.DataLoader.get_count_documents">
+<span class="sig-name descname"><span class="pre">get_count_documents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/DataLoader.html#DataLoader.get_count_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.DataLoader.DataLoader.get_count_documents" title="Link to this definition">¶</a></dt>
+<dd><p>Get the count of documents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">get_count_documents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/src/DataLoader.html#DataLoader.get_count_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Get the count of documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The count of ArXiv documents.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">get_documents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/DataLoader.html#DataLoader.get_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Get the list of documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of ArXiv documents.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.LlamaServiceAPI">
+<span id="src-llamaserviceapi-module"></span><h2>src.LlamaServiceAPI module<a class="headerlink" href="#module-src.LlamaServiceAPI" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.LlamaServiceAPI.LlamaServiceAPI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.LlamaServiceAPI.</span></span><span class="sig-name descname"><span class="pre">LlamaServiceAPI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'llama-7b-chat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tokens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/LlamaServiceAPI.html#LlamaServiceAPI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.LlamaServiceAPI.LlamaServiceAPI" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for interacting with the LLAMA API.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.LlamaServiceAPI.LlamaServiceAPI.llm">
+<span class="sig-name descname"><span class="pre">llm</span></span><a class="headerlink" href="#src.LlamaServiceAPI.LlamaServiceAPI.llm" title="Link to this definition">¶</a></dt>
+<dd><p>Instance of LlamaAPI for communicating with the LLAMA API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>LlamaAPI</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.LlamaServiceAPI.LlamaServiceAPI.get_llm">
+<span class="sig-name descname"><span class="pre">get_llm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/LlamaServiceAPI.html#LlamaServiceAPI.get_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.LlamaServiceAPI.LlamaServiceAPI.get_llm" title="Link to this definition">¶</a></dt>
+<dd><p>Get the LLAMA API instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.LlamaServiceAPI.LlamaServiceAPI.send_query">
+<span class="sig-name descname"><span class="pre">send_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/LlamaServiceAPI.html#LlamaServiceAPI.send_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.LlamaServiceAPI.LlamaServiceAPI.send_query" title="Link to this definition">¶</a></dt>
+<dd><p>Send a query to the LLAMA API and retrieve the response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">get_llm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LlamaAPI</span></span></span><a class="reference internal" href="_modules/src/LlamaServiceAPI.html#LlamaServiceAPI.get_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd><p>Get the LLAMA API instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The LLAMA API instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>LlamaAPI</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">send_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/LlamaServiceAPI.html#LlamaServiceAPI.send_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd><p>Send a query to the LLAMA API and retrieve the response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>str</em>) -- The query string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response generated by the LLAMA API.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.Rerankers">
+<span id="src-rerankers-module"></span><h2>src.Rerankers module<a class="headerlink" href="#module-src.Rerankers" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.Rerankers.RerankerColBERT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.Rerankers.</span></span><span class="sig-name descname"><span class="pre">RerankerColBERT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'colbert-ir/colbertv2.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'colbert-ir/colbertv2.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_retrieval_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/Rerankers.html#RerankerColBERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.Rerankers.RerankerColBERT" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Reranker using ColBERT.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.Rerankers.RerankerColBERT.colbert_reranker">
+<span class="sig-name descname"><span class="pre">colbert_reranker</span></span><a class="headerlink" href="#src.Rerankers.RerankerColBERT.colbert_reranker" title="Link to this definition">¶</a></dt>
+<dd><p>Instance of ColbertRerank for reranking sentences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ColbertRerank</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.Rerankers.RerankerColBERT.get_reranker">
+<span class="sig-name descname"><span class="pre">get_reranker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/Rerankers.html#RerankerColBERT.get_reranker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.Rerankers.RerankerColBERT.get_reranker" title="Link to this definition">¶</a></dt>
+<dd><p>Get the reranker instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">get_reranker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ColbertRerank</span></span></span><a class="reference internal" href="_modules/src/Rerankers.html#RerankerColBERT.get_reranker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd><p>Get the reranker instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The reranker instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ColbertRerank</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.Rerankers.RerankerSentenceTransformer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.Rerankers.</span></span><span class="sig-name descname"><span class="pre">RerankerSentenceTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mixedbread-ai/mxbai-rerank-xsmall-v1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_retrieval_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/Rerankers.html#RerankerSentenceTransformer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.Rerankers.RerankerSentenceTransformer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Reranker using SentenceTransformer.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.Rerankers.RerankerSentenceTransformer.sentence_reranker">
+<span class="sig-name descname"><span class="pre">sentence_reranker</span></span><a class="headerlink" href="#src.Rerankers.RerankerSentenceTransformer.sentence_reranker" title="Link to this definition">¶</a></dt>
+<dd><p>Instance of SentenceTransformerRerank for reranking sentences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SentenceTransformerRerank</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.Rerankers.RerankerSentenceTransformer.get_reranker">
+<span class="sig-name descname"><span class="pre">get_reranker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/Rerankers.html#RerankerSentenceTransformer.get_reranker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.Rerankers.RerankerSentenceTransformer.get_reranker" title="Link to this definition">¶</a></dt>
+<dd><p>Get the reranker instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">get_reranker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SentenceTransformerRerank</span></span></span><a class="reference internal" href="_modules/src/Rerankers.html#RerankerSentenceTransformer.get_reranker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dd><p>Get the reranker instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The reranker instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>SentenceTransformerRerank</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.VectorStoreService">
+<span id="src-vectorstoreservice-module"></span><h2>src.VectorStoreService module<a class="headerlink" href="#module-src.VectorStoreService" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.VectorStoreService.</span></span><span class="sig-name descname"><span class="pre">VectorStoreService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chroma_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_postprocessors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/VectorStoreService.html#VectorStoreService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.VectorStoreService.VectorStoreService" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to manage vector storage and query operations for retrieval-augmented generation (RAG).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> (<em>Optional</em><em>[</em><em>pd.DataFrame</em><em>]</em>) -- DataFrame containing documents to index. Default is None.</p></li>
+<li><p><strong>show_progress</strong> (<em>bool</em>) -- Flag to indicate whether to show progress bars during indexing. Default is False.</p></li>
+<li><p><strong>llm</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#src.LlamaServiceAPI.LlamaServiceAPI" title="src.LlamaServiceAPI.LlamaServiceAPI"><em>LlamaServiceAPI</em></a><em>]</em>) -- Instance of LlamaServiceAPI for generating prompts. Default is None.</p></li>
+<li><p><strong>embedding_model</strong> (<em>str</em>) -- Name of the embedding model to use. Default is an empty string.</p></li>
+<li><p><strong>chroma_path</strong> (<em>str</em>) -- Path to the ChromaDB directory. Default is '.'.</p></li>
+<li><p><strong>name_collection</strong> (<em>str</em>) -- Name of the collection in ChromaDB. Default is an empty string.</p></li>
+<li><p><strong>cache_folder</strong> (<em>str</em>) -- Path to the cache folder for storing embeddings. Default is '.'.</p></li>
+<li><p><strong>node_postprocessors</strong> (<em>Optional</em><em>[</em><em>Reranker</em><em>]</em>) -- Instance of the reranker for post-processing nodes. Default is None.</p></li>
+<li><p><strong>similarity_top_k</strong> (<em>int</em>) -- Number of top similar documents to retrieve. Default is 3.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) -- Alpha value for balancing original and reranked scores. Default is 0.5.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.device">
+<span class="sig-name descname"><span class="pre">device</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.device" title="Link to this definition">¶</a></dt>
+<dd><p>Device used for embedding model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.device</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.embed_model">
+<span class="sig-name descname"><span class="pre">embed_model</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.embed_model" title="Link to this definition">¶</a></dt>
+<dd><p>Instance of HuggingFaceEmbedding for embedding documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>HuggingFaceEmbedding</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.chroma_client">
+<span class="sig-name descname"><span class="pre">chroma_client</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.chroma_client" title="Link to this definition">¶</a></dt>
+<dd><p>Client for accessing ChromaDB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PersistentClient</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.chroma_collection">
+<span class="sig-name descname"><span class="pre">chroma_collection</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.chroma_collection" title="Link to this definition">¶</a></dt>
+<dd><p>Collection in ChromaDB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ChromaCollection</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.vector_store">
+<span class="sig-name descname"><span class="pre">vector_store</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.vector_store" title="Link to this definition">¶</a></dt>
+<dd><p>Vector store for storing document embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ChromaVectorStore</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.storage_context">
+<span class="sig-name descname"><span class="pre">storage_context</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.storage_context" title="Link to this definition">¶</a></dt>
+<dd><p>Context for storage operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>StorageContext</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.index">
+<span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.index" title="Link to this definition">¶</a></dt>
+<dd><p>Index for vector storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>VectorStoreIndex</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.query_engine">
+<span class="sig-name descname"><span class="pre">query_engine</span></span><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.query_engine" title="Link to this definition">¶</a></dt>
+<dd><p>Engine for executing RAG queries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>RAGQueryEngine</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.update_prompts">
+<span class="sig-name descname"><span class="pre">update_prompts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refine_template</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/VectorStoreService.html#VectorStoreService.update_prompts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.update_prompts" title="Link to this definition">¶</a></dt>
+<dd><p>Update prompt templates for RAG query engine.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.VectorStoreService.VectorStoreService.send_query">
+<span class="sig-name descname"><span class="pre">send_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/VectorStoreService.html#VectorStoreService.send_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.VectorStoreService.VectorStoreService.send_query" title="Link to this definition">¶</a></dt>
+<dd><p>Send a query to the RAG query engine and retrieve the response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">send_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/VectorStoreService.html#VectorStoreService.send_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
+<dd><p>Send a query message to the RAG query engine and retrieve the response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) -- The query message.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response generated by the RAG query engine.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">update_prompts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refine_template</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/VectorStoreService.html#VectorStoreService.update_prompts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition">¶</a></dt>
+<dd><p>Update prompt templates for the RAG query engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prompt_template</strong> (<em>str</em>) -- Template for generating prompts.</p></li>
+<li><p><strong>refine_template</strong> (<em>str</em>) -- Template for refining generated responses.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.config">
+<span id="src-config-module"></span><h2>src.config module<a class="headerlink" href="#module-src.config" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-src.preprocessing">
+<span id="src-preprocessing-module"></span><h2>src.preprocessing module<a class="headerlink" href="#module-src.preprocessing" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.preprocessing.cleaning">
+<span class="sig-prename descclassname"><span class="pre">src.preprocessing.</span></span><span class="sig-name descname"><span class="pre">cleaning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/preprocessing.html#cleaning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.preprocessing.cleaning" title="Link to this definition">¶</a></dt>
+<dd><p>Clean the input text by converting it to lowercase, removing non-alphanumeric characters, and reducing consecutive spaces to single spaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) -- The text to be cleaned.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cleaned text.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.prompts_template">
+<span id="src-prompts-template-module"></span><h2>src.prompts_template module<a class="headerlink" href="#module-src.prompts_template" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-src.utils">
+<span id="src-utils-module"></span><h2>src.utils module<a class="headerlink" href="#module-src.utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.load_config_json">
+<span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">load_config_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/src/utils.html#load_config_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.load_config_json" title="Link to this definition">¶</a></dt>
+<dd><p>Load configuration settings from a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_path</strong> (<em>str</em>) -- The path to the JSON configuration file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing the configuration settings.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> -- If the specified configuration file is not found.</p></li>
+<li><p><strong>json.JSONDecodeError</strong> -- If there is an error parsing the JSON file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.load_config_yaml">
+<span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">load_config_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/src/utils.html#load_config_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.load_config_yaml" title="Link to this definition">¶</a></dt>
+<dd><p>Load configuration settings from a YAML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_path</strong> (<em>str</em>) -- The path to the YAML configuration file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing the configuration settings.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> -- If the specified configuration file is not found.</p></li>
+<li><p><strong>yaml.YAMLError</strong> -- If there is an error parsing the YAML file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.load_environment_variables">
+<span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">load_environment_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/utils.html#load_environment_variables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.load_environment_variables" title="Link to this definition">¶</a></dt>
+<dd><p>Load environment variables from a .env file located in the project directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>project_path</strong> (<em>str</em>) -- The path to the project directory.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>LLAMA_API_TOKEN extracted from the .env file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> -- If the .env file is not found in the specified project directory.</p></li>
+<li><p><strong>ValueError</strong> -- If LLAMA_API_TOKEN is not found in the .env file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.transform_from_json_to_csv">
+<span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">transform_from_json_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/utils.html#transform_from_json_to_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.transform_from_json_to_csv" title="Link to this definition">¶</a></dt>
+<dd><p>Transform data from a JSON file to a CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_path</strong> (<em>str</em>) -- The path to the JSON data file.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em>) -- The path to save the CSV file.</p></li>
+<li><p><strong>columns</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) -- List of column names to include in the CSV.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">arhix_rag</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Vadim Shubin.
+
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+
+      |
+      <a href="_sources/src.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+
+
+
+  </body>
+</html>

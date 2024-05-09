@@ -1,0 +1,9 @@
+stages:
+  data_load:
+    cmd: python3 src/preprocessing.py --config=params.yaml
+    deps:
+    - src/preprocessing.py
+    params:
+    - data
+    outs:
+    - data/processed/test.csv

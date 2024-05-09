@@ -3,10 +3,22 @@ import yaml
 import pandas as pd
 import os
 import sys
-import argparse
 from dotenv import load_dotenv
 
 def transform_from_json_to_csv(data_path: str, save_path: str, columns: list[str]) -> None:
+
+    """
+    Transform data from a JSON file to a CSV file.
+
+    Args:
+        data_path (str): The path to the JSON data file.
+        save_path (str): The path to save the CSV file.
+        columns (list[str]): List of column names to include in the CSV.
+
+    Returns:
+        None
+    """
+
     with open(data_path, 'r', encoding='utf-8') as f:
         for line in f:
             doc = json.loads(line)
@@ -19,7 +31,21 @@ def transform_from_json_to_csv(data_path: str, save_path: str, columns: list[str
     df_data.to_csv(save_path, index=False)
     print(f'Data saved to {save_path}')
 
-def load_config_json(config_path):
+def load_config_json(config_path) -> dict:
+    """
+    Load configuration settings from a JSON file.
+
+    Args:
+        config_path (str): The path to the JSON configuration file.
+
+    Returns:
+        dict: Dictionary containing the configuration settings.
+
+    Raises:
+        FileNotFoundError: If the specified configuration file is not found.
+        json.JSONDecodeError: If there is an error parsing the JSON file.
+    """
+
     try:
         with open(config_path) as config_file:
             return json.load(config_file)
@@ -28,7 +54,22 @@ def load_config_json(config_path):
     except json.JSONDecodeError:
         sys.exit(f"Error parsing JSON file: {config_path}")
 
-def load_config_yaml(config_path):
+def load_config_yaml(config_path) -> dict:
+
+    """
+    Load configuration settings from a YAML file.
+
+    Args:
+        config_path (str): The path to the YAML configuration file.
+
+    Returns:
+        dict: Dictionary containing the configuration settings.
+
+    Raises:
+        FileNotFoundError: If the specified configuration file is not found.
+        yaml.YAMLError: If there is an error parsing the YAML file.
+    """
+
     try:
         with open(config_path) as config_file:
             return yaml.safe_load(config_file)
@@ -38,7 +79,21 @@ def load_config_yaml(config_path):
         sys.exit(f"Error parsing YAML file: {config_path}")
 
 
-def load_environment_variables(project_path):
+def load_environment_variables(project_path) -> str:
+    """
+    Load environment variables from a .env file located in the project directory.
+
+    Args:
+        project_path (str): The path to the project directory.
+
+    Returns:
+        str: LLAMA_API_TOKEN extracted from the .env file.
+
+    Raises:
+        FileNotFoundError: If the .env file is not found in the specified project directory.
+        ValueError: If LLAMA_API_TOKEN is not found in the .env file.
+    """
+
     dotenv_path = os.path.join(project_path, ".env")
     if not os.path.exists(dotenv_path):
         raise FileNotFoundError(f".env file not found in {dotenv_path}")
@@ -47,35 +102,3 @@ def load_environment_variables(project_path):
     if token is None:
         raise ValueError("LLAMA_API_TOKEN not found in.env file")
     return token
-
-
-def load_configuration():
-    """Load configuration from command line arguments."""
-    parser = argparse.ArgumentParser(
-        description="Run model inference, calculate the accuracy."
-    )
-    parser.add_argument(
-        "--repo_id", type=str ,required=False, help="Path to the model from huggingface."
-    )
-    parser.add_argument(
-        "--config_path", type=str, required=False, help="Path to the config JSON file"
-    )
-    parser.add_argument(
-        "--questions_path", type=str, required=False, help="Path to the questions JSON file"
-    )
-    parser.add_argument(
-        "--results", type=str, required=True, help="Path to save the results from model in CSV file."
-    )
-    parser.add_argument(
-        "--parser_results", type=str, required=True, help="Path to save the results in JSON file."
-    )
-    parser.add_argument(
-        "--test_data", type=str, required=True, help="Path to the test dataframe CSV file."
-    )
-    parser.add_argument(
-        "--num_rows",type=int, help="Number of rows to process from the test dataframe.",
-    )
-    parser.add_argument(
-        "--size_chunk",type=int, help="Chunk size.",
-    )
-    return parser.parse_args()

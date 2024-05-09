@@ -1,5 +1,19 @@
 from llama_index.core import PromptTemplate
 
+"""
+Module-level documentation.
+
+This module provides prompt templates for generating prompts for the RAG (Retrieval-Augmented Generation) system.
+
+Attributes:
+    user_template (PromptTemplate): Template for generating prompts for user queries.
+    refine_template (PromptTemplate): Template for refining existing answers based on new context.
+
+Note:
+    These prompt templates are used to generate prompts for the RAG system. They follow specific rules and formats to ensure effective generation of responses.
+"""
+
+
 system_prompt_str = """
 You are an expert Q&A system that is trusted around the world.
 Always answer the query using the provided context information, and not prior knowledge.

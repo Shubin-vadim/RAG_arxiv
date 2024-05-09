@@ -2,6 +2,10 @@ import os
 
 from dotenv import load_dotenv
 
+"""
+Load environment variables from a .env file and set default values for specific variables if they are not found.
+"""
+
 load_dotenv()
 
 # Llama-API

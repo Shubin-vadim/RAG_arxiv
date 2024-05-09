@@ -1,6 +1,12 @@
+general:
+  device: 'cpu'
+
 rag:
-  debug: True
+  debug: False
+  count_records_debug: 10
+  vector_store: True
   count_records: 166
+  reranker: 'colbert' # None, SentenceTransformer
 
 data:
   test_size: 0.3
@@ -8,10 +14,20 @@ data:
   interim_data: 'data\interim\prepared_data.csv'
   prepared_column: 'prepared_text'
 
+
 llm:
   temperature: 0.01
   max_tokens: 2048
 
+reranker:
+  model: 'colbert-ir/colbertv2.0'
+  top_n: 3
+  keep_retrieval_score: True
+
 vector_store:
+  name_collection: 'arxiv'
+  chroma_path: './DB'
+  cache_folder: './models'
+  show_progress: False
   similarity_top_k: 5
   alpha: 0.5
