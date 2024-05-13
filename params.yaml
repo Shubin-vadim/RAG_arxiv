@@ -4,7 +4,7 @@ general:
 rag:
   debug: False
   count_records_debug: 10
-  vector_store: True
+  vector_store: False
   count_records: 166
   reranker: 'colbert' # None, SentenceTransformer
 

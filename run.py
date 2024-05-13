@@ -5,7 +5,7 @@ import argparse
 from src.DataLoader import DataLoader
 from src.VectorStoreService import VectorStoreService
 from src.LlamaServiceAPI import LlamaServiceAPI
-from src.config import LLAMA_MODEL, LLAMA_API_TOKEN, EMBEDDING_MODEL, RERANK_MODEL
+from src.config import LLAMA_MODEL, LLAMA_API_TOKEN, EMBEDDING_MODEL
 from src.Rerankers import RerankerColBERT, SentenceTransformerRerank
 from src.prompts_template import user_template, refine_template
 from src.utils import load_config_yaml
@@ -92,7 +92,7 @@ def main(config_path: str) -> None:
     )
 
     while True:
-         query = input('Enter your question')
+         query = input('Enter your question: ')
          answer = vectore_service.send_query(query)
          print(answer)
          print('-----' * 10)
