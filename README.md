@@ -33,7 +33,7 @@ You can download the dataset from the [Kaggle](https://www.kaggle.com/datasets/C
 ### Preparing the Datasets
 Before running the RAG process, ensure your datasets are preprocessed and structured properly. You must specify paths to the preprocessed datasets in your configuration YAML file under the key `interim_data`.Dataset should already contain a column specified by `prepared_column` in the configuration file, which in this case is `prepared_text`.
 
-### Fine-tuning the Model
+### Run the RAG
 To start RAG, execute the `run.py` script with a YAML configuration file. Place the configuration file, such as `params.yaml`. For instance:
 
 ```bash
