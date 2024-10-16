@@ -37,5 +37,5 @@ Before running the RAG process, ensure your datasets are preprocessed and struct
 To start RAG, execute the `run.py` script with a YAML configuration file. Place the configuration file, such as `params.yaml`. For instance:
 
 ```bash
-poetry run python run.py --config_path params.yaml.json
+poetry run python run.py --config_path params.yaml
 ```
